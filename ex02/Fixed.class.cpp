@@ -66,3 +66,106 @@ std::ostream &operator<<(std::ostream &cout, Fixed const &value)
     cout << value.toFloat();
     return (cout);
 }
+
+Fixed Fixed::operator++()
+{
+	value++;
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp = *this;
+	++*this;
+	return (tmp);
+}
+
+Fixed Fixed::operator--()
+{
+	value--;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp = *this;
+	--*this;
+	return (tmp);
+}
+
+bool Fixed::operator==(Fixed const& a)
+{
+	return (a.value == this->value);
+}
+
+bool Fixed::operator!=(Fixed const& a)
+{
+	return !(a.value == this->value);
+}
+
+bool Fixed::operator<(Fixed const& a) const
+{
+	return (this->value < a.value);
+}
+
+bool Fixed::operator>(Fixed const& a) const
+{
+	return (this->value > a.value);
+}
+
+bool Fixed::operator<=(Fixed const& a)
+{
+	return (this->value <= a.value);
+}
+
+bool Fixed::operator>=(Fixed const& a)
+{
+	return (this->value >= a.value);
+}
+
+
+Fixed Fixed::operator+(Fixed const &b) const
+{
+	return (Fixed(this->toFloat() + b.toFloat()));
+}
+
+Fixed Fixed::operator*(Fixed const &b) const
+{
+	return (Fixed(this->toFloat() * b.toFloat()));
+}
+
+Fixed Fixed::operator/(Fixed const &b) const
+{
+	return (Fixed(this->toFloat() / b.toFloat()));
+}
+
+Fixed Fixed::operator-(Fixed const &b) const
+{
+	return (Fixed(this->toFloat() - b.toFloat()));
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+
+const Fixed
+&Fixed::min( const Fixed &a, const Fixed &b)
+{
+    return (a < b ? a : b);
+}
+
+const Fixed &Fixed::max( const Fixed &a, const Fixed &b)
+{
+    return (a > b ? a : b);
+}
